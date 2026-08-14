@@ -18,13 +18,17 @@
   "homepage": "https://github.com/luisP-max/API_de_Gesti-n_de_Riwi#readme",
   "devDependencies": {
     "@types/express": "^5.0.6",
+    "@types/node": "^26.2.0",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.8",
     "tsx": "^4.23.12",
     "typescript": "^7.0.2"
   },
   "dependencies": {
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "mongodb": "^7.5.0",
-    "mongoose": "^9.9.2"
+    "mongoose": "^9.9.2",
+    "swagger-jsdoc": "^6.3.0",
+    "swagger-ui-express": "^5.0.1"
   }
 }
