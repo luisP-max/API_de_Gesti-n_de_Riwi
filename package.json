@@ -1,0 +1,30 @@
+{
+  "name": "api_de_gesti-n_de_riwi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/app.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luisP-max/API_de_Gesti-n_de_Riwi.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/luisP-max/API_de_Gesti-n_de_Riwi/issues"
+  },
+  "homepage": "https://github.com/luisP-max/API_de_Gesti-n_de_Riwi#readme",
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "tsx": "^4.23.12",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongodb": "^7.5.0",
+    "mongoose": "^9.9.2"
+  }
+}
