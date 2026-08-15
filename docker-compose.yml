@@ -1,7 +1,7 @@
 services:
   mongo:
     image: mongo:8
-    container_name: API_de_Gestión_de_Riwi
+    container_name: API_de_Gestion_de_Riwi
     ports:
       - "27017:27017"
     environment:

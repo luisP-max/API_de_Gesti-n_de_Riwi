@@ -1,4 +1,4 @@
-import mongoose from "mongoose"
+import mongoose from 'mongoose'
 
 const {MONGODB_URI} = process.env;
 
@@ -9,4 +9,4 @@ export const ConnectDB = async () => {
     }catch(err){
         console.log(err);
     }
-}   
+}
