@@ -5,16 +5,19 @@ interface ITL {
     cargo: string;
 }
 
-const tlSchema = new  Schema <ITL>(
+const tlSchema = new Schema<ITL>(
     {
         nombre: {
             type: String,
-            required: true
+            required: true,
+            unique: true,
+            trim: true
         },
 
         cargo: {
             type: String,
-            required: true
+            required: true,
+            trim: true
         }
     },
     {
@@ -22,4 +25,4 @@ const tlSchema = new  Schema <ITL>(
     }
 );
 
-export const TL = model <ITL> ("TL", tlSchema);
+export const TL = model<ITL>("TL", tlSchema);
