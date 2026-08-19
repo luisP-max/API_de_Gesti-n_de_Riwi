@@ -5,6 +5,7 @@ import * as swaggerUi from 'swagger-ui-express';
 import { swaggerSpec } from './config/swagger.js'; 
 import { ConnectDB } from './config/db.js';       
 
+import routerAuth from './routes/auth.router.js';
 import routerTL from './routes/tl.router.js';
 import routerRuta from './routes/ruta.router.js';
 import routerClan from './routes/clan.router.js';
@@ -21,6 +22,7 @@ app.use(
   swaggerUi.setup(swaggerSpec)
 );
 
+app.use('/api/auth', routerAuth);
 app.use('/api/tls', routerTL);     
 app.use('/api/rutas', routerRuta);  
 app.use('/api/clanes', routerClan);  
