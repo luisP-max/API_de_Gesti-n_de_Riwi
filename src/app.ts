@@ -1,10 +1,12 @@
+// importacion de dependencias
 import express from 'express';
 import 'dotenv/config';
 import * as swaggerUi from 'swagger-ui-express'; 
-
+// conecciones del database
 import { swaggerSpec } from './config/swagger.js'; 
 import { ConnectDB } from './config/db.js';       
 
+//importacion de las rutas de router
 import routerAuth from './routes/auth.router.js';
 import routerTL from './routes/tl.router.js';
 import routerRuta from './routes/ruta.router.js';
@@ -16,6 +18,7 @@ const app = express();
 
 app.use(express.json());
 
+//apis
 app.use(
   "/api-docs",
   swaggerUi.serve,
@@ -28,6 +31,7 @@ app.use('/api/rutas', routerRuta);
 app.use('/api/clanes', routerClan);  
 app.use('/api/coders', routerCoder); 
 
+//puertos
 app.listen(PORT, async () => {
     try {
         await ConnectDB();

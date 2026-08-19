@@ -1,4 +1,5 @@
 import express, { type Request, type Response } from 'express';
+import { body, validationResult } from 'express-validator';
 
 const router = express.Router();
 
@@ -28,38 +29,40 @@ const router = express.Router();
  *       200:
  *         description: Autenticación exitosa
  *       400:
- *         description: Datos inválidos o contraseña muy corta
+ *         description: Datos inválidos
  */
-router.post('/login', async (req: Request, res: Response) => {
-    try {
-        const { email, contrasena } = req.body;
-
-        if (!email || !contrasena) {
+router.post(
+    '/login',
+    [
+        body('email')
+            .notEmpty().withMessage('El email es obligatorio.')
+            .isEmail().withMessage('El formato del email no es válido (ej: hola1@hola.com).'),
+        
+        body('contrasena')
+            .notEmpty().withMessage('La contraseña es obligatoria.')
+            .isLength({ min: 6 }).withMessage('La contraseña debe tener mínimo 6 caracteres o más.')
+    ],
+    async (req: Request, res: Response) => {
+        const errores = validationResult(req);
+        if (!errores.isEmpty()) {
             return res.status(400).json({ 
-                message: 'Error: El email y la contraseña son campos obligatorios.' 
+                message: 'Error de validación en los datos de entrada.',
+                errors: errores.array() 
             });
         }
 
-        if (typeof email !== 'string' || typeof contrasena !== 'string') {
-            return res.status(400).json({ 
-                message: 'Error: Los datos enviados deben ser cadenas de texto.' 
+        try {
+            const { email } = req.body;
+
+            res.status(200).json({ 
+                message: 'Validación exitosa.',
+                email 
             });
+
+        } catch (error) {
+            res.status(500).json({ message: 'Error interno del servidor', error });
         }
-
-        if (contrasena.length < 6) {
-            return res.status(400).json({ 
-                message: 'Error: La contraseña debe tener mínimo 6 caracteres o más.' 
-            });
-        }
-
-        res.status(200).json({ 
-            message: 'Validación exitosa. Datos listos para procesar.',
-            email 
-        });
-
-    } catch (error) {
-        res.status(500).json({ message: 'Error del servidor', error });
     }
-});
+);
 
 export default router;

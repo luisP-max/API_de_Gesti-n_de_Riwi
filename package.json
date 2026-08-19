@@ -27,6 +27,7 @@
   "dependencies": {
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "express-validator": "^7.3.2",
     "mongoose": "^9.9.2",
     "swagger-jsdoc": "^6.3.0",
     "swagger-ui": "^5.32.14",
