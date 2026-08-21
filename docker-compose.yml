@@ -1,14 +1,20 @@
+# Configuración de la base de datos para MongoDB
 services:
   mongo:
     image: mongo:8
     container_name: API_de_Gestion_de_Riwi
+
+    # Mapeo de puertos: [Puerto Host]:[Puerto Contenedor]
     ports:
       - "27017:27017"
+    
     environment:
-      MONGO_INITDB_ROOT_USERNAME: luis
-      MONGO_INITDB_ROOT_PASSWORD: luis123
+      MONGO_INITDB_ROOT_USERNAME: luis # Nombre del administrador 
+      MONGO_INITDB_ROOT_PASSWORD: luis123 # Contraseña del administrador
+    # Mapea el volumen para que los datos no se borren al apagar el contenedor
     volumes:
       - mongo_data:/data/db
 
+# Definición del volumen persistente para Docker
 volumes:
   mongo_data:
