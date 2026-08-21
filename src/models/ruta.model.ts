@@ -1,29 +1,29 @@
-import { Schema, model, Types } from "mongoose";
+import { Schema, model, type Document, type Types } from 'mongoose';
 
-interface IRuta {
+export interface IRuta extends Document {
     nombre: string;
-    tlId: Types.ObjectId; 
+    tipo: 'basica' | 'avanzada';
+    tlId: Types.ObjectId;
 }
 
-
-const rutaSchema = new Schema<IRuta>(
-    {
-        nombre: {
-            type: String,
-            required: true,
-            unique: true, 
-            trim: true    
-        },
-
-        tlId: {
-            type: Schema.Types.ObjectId,
-            ref: "TL",    
-            required: true 
-        }
+const RutaSchema = new Schema<IRuta>({
+    nombre: { 
+        type: String, 
+        required: true, 
+        unique: true 
     },
-    {
-        timestamps: true 
+    tipo: { 
+        type: String, 
+        required: true, 
+        enum: ['basica', 'avanzada'] 
+    },
+    tlId: { 
+        type: Schema.Types.ObjectId, 
+        ref: 'TL', 
+        required: true 
     }
-);
+}, { timestamps: true });
 
-export const Ruta = model<IRuta>("Ruta", rutaSchema);
+export const Ruta = model<IRuta>('Ruta', RutaSchema);
+
+//todo lo estoy haciendo manual en el mongoDB lo que son las rutas basicas e avanzadas
